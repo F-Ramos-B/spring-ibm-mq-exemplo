@@ -14,17 +14,11 @@ public class MensagemDTO {
     private String nome;
     private int idade;
     private String cidade;
-    private int attempts = 0;
-    
-    public int incrementAttempt() {
-        this.attempts++;
-        return attempts;
-    }
 
     public MensagemDTO(MensagemDTO mensagemDTO) {
         this.nome = mensagemDTO.getNome();
         this.idade = mensagemDTO.getIdade();
         this.cidade = mensagemDTO.getCidade();
     }
-    
+
 }

@@ -24,22 +24,13 @@ public class MessageRest {
     @Autowired
     private JmsTemplate jmsTemplate;
 
-//    @Autowired
-//    @Qualifier("jmsTemplateFirstRetry")
-//    private JmsTemplate jmsTemplateFirstRetry;
-//
-//    @Autowired
-//    @Qualifier("jmsTemplateSecondRetry")
-//    private JmsTemplate jmsTemplateSecondRetry;
     @GetMapping("/cache")
     public ResponseEntity<List<MensagemDTO>> getCache() {
-        // Send a message with a POJO - the template reuse the message converter
         return ResponseEntity.ok(Receiver.CACHE_OK);
     }
 
     @GetMapping("/dlq-cache")
     public ResponseEntity<List<MensagemDTO>> getDLQCache() {
-        // Send a message with a POJO - the template reuse the message converter
         return ResponseEntity.ok(Receiver.CACHE_DLQ);
     }
 
@@ -50,12 +41,6 @@ public class MessageRest {
         jmsTemplate.convertAndSend(mensagem);
     }
 
-//    @PostMapping("/delayed")
-//    public void enviarMensagemDelay(@RequestBody MensagemDTO mensagem) {
-//        // Send a message with a POJO - the template reuse the message converter
-//        log.info("Enviando mensagem: {}", mensagem);
-//        jmsTemplateFirstRetry.convertAndSend(mensagem);
-//    }
     @PostMapping("/batch/{amount}")
     public void enviarBatch(@RequestBody MensagemDTO mensagem, @PathVariable("amount") Integer amount) {
         // Send a message with a POJO - the template reuse the message converter
